@@ -1,0 +1,4 @@
+code,criticality,name,descr
+R,0,returned,returned
+D,1,delivered,delivered
+P,2,pending,pending

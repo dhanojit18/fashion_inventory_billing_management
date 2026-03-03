@@ -1,0 +1,11 @@
+ID,inventoryName,location,createdAt,createdBy,modifiedAt,modifiedBy
+27615187-5817-41a5-92c5-7d4c41114c36,inventoryName-27615187,location-27615187,2020-05-14T00:00:00.000Z,createdBy.gfw0j@example.org,2016-10-17T00:00:00.000Z,modifiedBy.gfw0j@example.net
+29104193-a8d9-487c-bfb2-22072e42c490,inventoryName-29104193,location-29104193,2019-12-30T00:00:00.000Z,createdBy.hbsxt@example.org,2000-06-06T00:00:00.000Z,modifiedBy.hbsxt@example.com
+29104194-21c5-44e0-b7eb-6ed1cc7aca2f,inventoryName-29104194,location-29104194,2016-03-21T00:00:00.000Z,createdBy.hbsxu@example.net,2004-03-11T00:00:00.000Z,modifiedBy.hbsxu@example.org
+29104195-4416-4b4c-9f68-580a70a5c6ca,inventoryName-29104195,location-29104195,2007-04-03T00:00:00.000Z,createdBy.hbsxv@example.net,2010-10-04T00:00:00.000Z,modifiedBy.hbsxv@example.org
+29104196-710a-4152-a419-077d4094358f,inventoryName-29104196,location-29104196,2004-11-19T00:00:00.000Z,createdBy.hbsxw@example.com,2012-10-29T00:00:00.000Z,modifiedBy.hbsxw@example.org
+29104197-03dc-49c3-8c47-ac61087ae2ea,inventoryName-29104197,location-29104197,2013-02-09T00:00:00.000Z,createdBy.hbsxx@example.com,2002-01-12T00:00:00.000Z,modifiedBy.hbsxx@example.com
+29104198-76d7-4dd9-9f3e-94f0e9188f9b,inventoryName-29104198,location-29104198,2000-07-22T00:00:00.000Z,createdBy.hbsxy@example.org,2003-10-31T00:00:00.000Z,modifiedBy.hbsxy@example.org
+29104199-76aa-4b16-9526-dfbeeec06bce,inventoryName-29104199,location-29104199,2020-02-20T00:00:00.000Z,createdBy.hbsxz@example.net,2021-04-27T00:00:00.000Z,modifiedBy.hbsxz@example.org
+29104200-6950-4413-9ede-2ce026432b90,inventoryName-29104200,location-29104200,2011-08-28T00:00:00.000Z,createdBy.hbsy0@example.net,2009-05-29T00:00:00.000Z,modifiedBy.hbsy0@example.org
+29104201-e6d7-4cdc-8e2a-490977ece7cb,inventoryName-29104201,location-29104201,2003-04-27T00:00:00.000Z,createdBy.hbsy1@example.net,2019-09-28T00:00:00.000Z,modifiedBy.hbsy1@example.com

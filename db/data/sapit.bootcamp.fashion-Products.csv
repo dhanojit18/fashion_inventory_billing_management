@@ -1,0 +1,3 @@
+ID,name,description,price,stock,size,status,inventory_ID,createdAt,createdBy,modifiedAt,modifiedBy
+75854132-fd62-4bcc-acd3-66cbfd7dc8a3,name-7585413,description-7585413,42895680.41,91,ze-7585413,INA,29104201-e6d7-4cdc-8e2a-490977ece7cb,2016-03-18T00:00:00.000Z,createdBy.4ikxx@example.com,2004-10-02T00:00:00.000Z,modifiedBy.4ikxx@example.net
+7585414f-2ada-4c23-b146-1581d4675d16,name-7585414,description-7585414,32693151.04,88,ze-7585414,ACT,29104201-e6d7-4cdc-8e2a-490977ece7cb,2022-03-20T00:00:00.000Z,createdBy.4ikxy@example.com,2011-07-05T00:00:00.000Z,modifiedBy.4ikxy@example.net
