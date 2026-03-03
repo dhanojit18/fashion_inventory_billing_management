@@ -1,0 +1,3 @@
+ID,product_ID,inventory_ID,size,color,skuCode,price,stock,createdAt,createdBy,modifiedAt,modifiedBy
+15435383-95ba-44af-887a-d5ccc0a73b01,20406824-3d04-4255-a5bf-02564b9b9e25,31650877-c68e-4d94-87af-143eb26f70f0,e-15435383,color-15435383,skuCode-15435383,82745320.2,38,2011-08-09T00:00:00.000Z,createdBy.96u0n@example.net,2013-11-17T00:00:00.000Z,modifiedBy.96u0n@example.com
+15435384-2b7e-467d-a570-5d1cb34d42e7,20406824-3d04-4255-a5bf-02564b9b9e25,31650877-c68e-4d94-87af-143eb26f70f0,e-15435384,color-15435384,skuCode-15435384,43651985.75,41,2008-09-07T00:00:00.000Z,createdBy.96u0o@example.com,2019-03-04T00:00:00.000Z,modifiedBy.96u0o@example.org

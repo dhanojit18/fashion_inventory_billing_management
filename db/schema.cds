@@ -8,67 +8,72 @@ using {
 
 
 entity Inventory : cuid, managed {
-  inventoryName : String(100);
-  location      : String(150);
+  name      : String(100);
+  location  : String(150);
 
-  managers : Composition of many InventoryManagers
-             on managers.inventory = $self;
+  managers  : Composition of many InventoryManagers
+              on managers.inventory = $self;
 
-  products : Composition of many Products
-             on products.inventory = $self;
+  skus      : Composition of many SKUs
+              on skus.inventory = $self;
 }
 
-
-
 entity InventoryManagers : cuid {
-  userId    : String(100);  
+  userId    : String(100);
   inventory : Association to one Inventory;
 }
 
 
 
 entity Products : cuid, managed {
-  name        : String(150);
+  productName : String(150);
   description : String(500);
-  price       : Decimal(10,2);
-  stock       : Integer;
-  size        : String(10);
-  status      : ProductStatus;
+  brand       : Association to one Brands;
+  category    : Association to one Categories;
+  season      : Season;
+  gender      : Gender;
+  basePrice   : Decimal(10,2);
 
-  inventory   : Association to one Inventory;
-
-  categories  : Composition of many ProductToCategory
-                on categories.product = $self;
+  skus        : Association to many SKUs
+                on skus.product = $self;
 }
 
-
+entity Brands : cuid, managed {
+  name : String(100);
+}
 
 entity Categories : cuid, managed {
   name : String(100);
-
-  products : Composition of many ProductToCategory
-             on products.category = $self;
 }
 
-entity ProductToCategory : cuid {
-  key product  : Association to one Products;
-  key category : Association to one Categories;
+
+entity SKUs : cuid, managed {
+  product    : Association to one Products;
+  inventory  : Association to one Inventory;
+
+  size       : String(10);
+  color      : String(30);
+  skuCode    : String(50);
+
+  price      : Decimal(10,2);
+  stock      : Integer;
 }
 
 
 
 entity Customers : cuid, managed {
-  name    : String(150);
-  email   : String(150);
+  name   : String(150);
+  email  : String(150);
 
-  orders  : Association to many Orders
-            on orders.customer = $self;
+  orders : Association to many Orders
+           on orders.customer = $self;
 }
 
 
 
 entity Orders : cuid, managed {
   customer    : Association to one Customers;
+  orderDate   : DateTime;
   totalAmount : Decimal(10,2);
   status      : Association to one OrderStatus;
 
@@ -78,7 +83,7 @@ entity Orders : cuid, managed {
 
 entity OrderItems : cuid {
   order    : Association to one Orders;
-  product  : Association to one Products;
+  sku      : Association to one SKUs;
   quantity : Integer;
   price    : Decimal(10,2);
 }
@@ -91,13 +96,24 @@ entity OrderStatus : CodeList {
 }
 
 
-type ProductStatus : String enum {
-  active   = 'ACT';
-  inactive = 'INA';
+
+type Season : String enum {
+  spring = 'SP';
+  summer = 'SU';
+  autumn = 'AU';
+  winter = 'WI';
+};
+
+type Gender : String enum {
+  men   = 'MEN';
+  women = 'WOM';
+  kids  = 'KID';
+  unisex = 'UNI';
 };
 
 type OrderStatusCode : String enum {
   pending   = 'P';
+  confirmed = 'C';
   delivered = 'D';
   returned  = 'R';
 };

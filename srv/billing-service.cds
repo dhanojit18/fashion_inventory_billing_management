@@ -7,5 +7,6 @@ service BillingService {
   entity Orders as projection on db.Orders;
 
   entity Customers as projection on db.Customers;
-  entity OrderStatus as projection on db.OrderStatus;
+
+  entity SKUs as projection on db.SKUs;
 }

@@ -5,13 +5,18 @@ annotate service.Orders with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : customer.email,
-                Label : '{i18n>CustomerEmail}',
+                Label : 'orderDate',
+                Value : orderDate,
             },
             {
                 $Type : 'UI.DataField',
-                Value : customer.name,
-                Label : 'name',
+                Label : 'totalAmount',
+                Value : totalAmount,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'status_code',
+                Value : status_code,
             },
         ],
     },
@@ -26,49 +31,20 @@ annotate service.Orders with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Value : createdAt,
-            Label : '{i18n>OrderDate}',
+            Label : 'orderDate',
+            Value : orderDate,
         },
         {
             $Type : 'UI.DataField',
-            Value : createdBy,
-            Label : '{i18n>BillingEmp}',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : customer.name,
-            Label : '{i18n>CustomerName}',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : status.name,
-            Label : '{i18n>Status}',
-            Criticality : status.criticality,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : '{i18n>OrderValue}',
+            Label : 'totalAmount',
             Value : totalAmount,
         },
-    ],
-    UI.SelectionFields : [
-        status_code,
-    ],
-    UI.ConnectedFields #connected : {
-        $Type : 'UI.ConnectedFieldsType',
-        Template : '{customer_email}Customer Name{customer_name}',
-        Data : {
-            $Type : 'Core.Dictionary',
-            customer_email : {
-                $Type : 'UI.DataField',
-                Value : customer.email,
-            },
-            customer_name : {
-                $Type : 'UI.DataField',
-                Value : customer.name,
-            },
+        {
+            $Type : 'UI.DataField',
+            Label : 'status_code',
+            Value : status_code,
         },
-    },
+    ],
 );
 
 annotate service.Orders with {
@@ -92,44 +68,4 @@ annotate service.Orders with {
         ],
     }
 };
-
-annotate service.Orders with {
-    status @(
-        Common.Label : 'status_code',
-        Common.ValueListWithFixedValues : true,
-        Common.ValueList : {
-            $Type : 'Common.ValueListType',
-            CollectionPath : 'OrderStatus',
-            Parameters : [
-                {
-                    $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : status_code,
-                    ValueListProperty : 'name',
-                },
-            ],
-        },
-        )
-};
-
-annotate service.OrderStatus with {
-    name @(
-        Common.Text : code,
-        )};
-
-annotate service.Customers with {
-    email @(
-        Common.ValueList : {
-            $Type : 'Common.ValueListType',
-            CollectionPath : 'Customers',
-            Parameters : [
-                {
-                    $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : email,
-                    ValueListProperty : 'email',
-                },
-            ],
-        },
-        Common.ValueListWithFixedValues : true,
-        Common.Text : name,
-)};
 
