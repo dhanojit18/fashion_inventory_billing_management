@@ -1,5 +1,5 @@
 code,criticality,name,descr
-C,51,confirmed,confirmed
-P,86,pending,pending
-D,75,delivered,delivered
-R,34,returned,returned
+P,59,pending,pending
+R,85,returned,returned
+D,48,delivered,delivered
+C,71,confirmed,confirmed
