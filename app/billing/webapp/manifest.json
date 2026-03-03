@@ -92,11 +92,6 @@
           "pattern": "Orders({key}):?query:",
           "name": "OrdersObjectPage",
           "target": "OrdersObjectPage"
-        },
-        {
-          "pattern": "Orders({key})/items({key2}):?query:",
-          "name": "OrderItemsObjectPage",
-          "target": "OrderItemsObjectPage"
         }
       ],
       "targets": {
@@ -119,9 +114,21 @@
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable"
+                  },
+                  "columns": {
+                    "DataField::status_code": {
+                      "width": "30%"
+                    },
+                    "DataField::totalAmount": {
+                      "width": "30%"
+                    },
+                    "DataField::orderDate": {
+                      "width": "30%"
+                    }
                   }
                 }
-              }
+              },
+              "initialLoad": "Enabled"
             }
           }
         },
@@ -133,24 +140,25 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Orders",
-              "navigation": {
-                "items": {
-                  "detail": {
-                    "route": "OrderItemsObjectPage"
+              "navigation": {},
+              "controlConfiguration": {
+                "items/@com.sap.vocabularies.UI.v1.LineItem#Items": {
+                  "columns": {
+                    "DataField::ID": {
+                      "width": "25%"
+                    },
+                    "DataField::price": {
+                      "width": "25%"
+                    },
+                    "DataField::quantity": {
+                      "width": "25%"
+                    },
+                    "DataField::sku_skuCode": {
+                      "width": "25%"
+                    }
                   }
                 }
               }
-            }
-          }
-        },
-        "OrderItemsObjectPage": {
-          "type": "Component",
-          "id": "OrderItemsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/Orders/items"
             }
           }
         }
