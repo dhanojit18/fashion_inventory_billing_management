@@ -47,13 +47,13 @@ entity Categories : cuid, managed {
 }
 
 
-entity SKUs : cuid, managed {
+entity SKUs {
   product    : Association to one Products;
   inventory  : Association to one Inventory;
 
   size       : String(10);
   color      : String(30);
-  skuCode    : String(50);
+  key skuCode    : String(50);
 
   price      : Decimal(10,2);
   stock      : Integer;
