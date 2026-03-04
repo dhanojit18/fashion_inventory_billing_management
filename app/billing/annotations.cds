@@ -53,6 +53,11 @@ annotate service.Orders with @(
             Label : 'Date ',
             Value : orderDate,
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BillingService.confirmOrder',
+            Label : 'confirmOrder',
+        },
     ],
     UI.HeaderInfo : {
         TypeName : 'Order Details',
