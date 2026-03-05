@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.9",
     "@sap/cds": "^9",
     "express": "^4"
   },
@@ -12,7 +13,9 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-billing": "cds watch --open billing/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-billing": "cds watch --open billing/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-admin_analytics": "cds watch --open adminanalytics/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
@@ -22,6 +25,11 @@
     "app/billing",
     "app/billing",
     "app/billing",
-    "app/billing"
+    "app/billing",
+    "app/admin_analytics",
+    "app/project1",
+    "app/project1",
+    "app/project1",
+    "app/project1"
   ]
 }

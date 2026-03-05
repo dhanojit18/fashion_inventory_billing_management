@@ -1,44 +1,74 @@
-const cds = require('@sap/cds');
+const cds = require("@sap/cds");
 
 module.exports = cds.service.impl(function () {
 
-  const { Orders } = this.entities;
+  const { Orders, OrderItems, SKUs } = this.entities;
 
-  this.before('CREATE', Orders, async (req) => {
-    const tx = cds.transaction(req);
+  // Recalculate total whenever items change
+this.before('CREATE', 'Orders', async (req) => {
+  console.log("This si called");
+  const aData = req.data?.items;
+  let initialAmt = 0;
+  for(let i =0; i < aData.length; i++){
+    let iRes = (aData[i].price * aData[i].quantity);
+    if(!isNaN(iRes)){
+      initialAmt = initialAmt + iRes;
+     }
+    
+  }
+  req.data.totalAmount = initialAmt;
+})
+this.on("confirmOrder", Orders, async (req) => {
 
-    let total = 0;
+  const orderID = req.params?.[0]?.ID;
 
-    for (const item of req.data.items || []) {
+  const order = await SELECT.one
+    .from(Orders, orderID)
+    .columns(o => {
+      o.status_code,
+      o.items(i => {
+        i.quantity,
+        i.sku(s => {
+          s.skuCode,
+          s.stock
+        })
+      })
+    });
 
-      const sku = await tx.read('sapit.bootcamp.fashion.SKUs')
-        .where({ ID: item.sku_ID });
+  if (!order) req.error(404, "Order not found");
 
-      if (!sku.length)
-        req.error(404, 'SKU not found');
+  if (order.status_code === "Confirmed")
+    req.error("Order already confirmed");
 
-      if (sku[0].stock < item.quantity)
-        req.error(400, `Insufficient stock for SKU ${sku[0].skuCode}`);
+  for (const item of order.items) {
 
-      total += item.quantity * item.price;
-    }
+    const skuCode = item.sku?.skuCode;
+    const qty = item.quantity;
 
-    req.data.totalAmount = total;
-  });
+    if (!skuCode)
+      req.error(400, "Order item SKU missing");
 
-  this.after('CREATE', Orders, async (data, req) => {
+    const sku = await SELECT.one
+      .from(SKUs)
+      .where({ skuCode });
 
-    const tx = cds.transaction(req);
-   
+    if (!sku)
+      req.error(404, `SKU not found: ${skuCode}`);
 
-    for (const item of data.items || []) {
+    if (sku.stock < qty)
+      req.error(400, `Insufficient stock for SKU ${skuCode}`);
 
-      await tx.run(
-        UPDATE('sapit.bootcamp.fashion.SKUs')
-          .set({ stock: { '-=': item.quantity } })
-          .where({ ID: item.sku_ID })
-      );
-    }
-  });
+    await UPDATE(SKUs)
+      .set({ stock: sku.stock - qty })
+      .where({ skuCode });
+
+  }
+
+  await UPDATE(Orders)
+    .set({ status_code: "Confirmed" })
+    .where({ ID: orderID });
+ 
+  return true;
+});
 
 });

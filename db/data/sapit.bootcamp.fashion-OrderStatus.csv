@@ -1,5 +1,3 @@
 code,criticality,name,descr
-P,59,pending,pending
-R,85,returned,returned
-D,48,delivered,delivered
-C,71,confirmed,confirmed
+Pending,2,Pending,Pending
+Confirmed,3,Confirmed,Confirmed

@@ -46,7 +46,15 @@ entity Categories : cuid, managed {
   name : String(100);
 }
 
-
+@Analytics.AnalyticalContext
+@Analytics.query: true
+@Aggregation.ApplySupported  : {
+    $Type : 'Aggregation.ApplySupportedType',
+    
+}
+@Aggregation.LeveledHierarchy  : [
+    
+]
 entity SKUs {
   product    : Association to one Products;
   inventory  : Association to one Inventory;
@@ -54,33 +62,42 @@ entity SKUs {
   size       : String(10);
   color      : String(30);
   key skuCode    : String(50);
-
+ @Analytics.measure: true
   price      : Decimal(10,2);
+   @Analytics.measure: true
   stock      : Integer;
 }
 
 
 
-entity Customers : cuid, managed {
-  name   : String(150);
-  email  : String(150);
 
-  orders : Association to many Orders
-           on orders.customer = $self;
-}
 
 
 
 entity Orders : cuid, managed {
-  customer    : Association to one Customers;
-  orderDate   : DateTime;
-  totalAmount : Decimal(10,2);
-  status      : Association to one OrderStatus;
+  Customername   : String(150);
+  Customeremail  : String(150);
+OrderNumber            : String(30);   // Business Order Number
+
+  OrderType              : OrderType;     
+  RequestedDeliveryDate  : Date;
+BillingAddress         : String(300);
+  ShippingAddress        : String(300);
+ 
+
+ status : Association to one OrderStatus default 'Pending';
+
+ totalAmount : Decimal(10,2) default 0;
 
   items       : Composition of many OrderItems
                 on items.order = $self;
 }
-
+type OrderType : String enum {
+  Standard = 'STANDARD';
+  Rush     = 'RUSH';
+  Return   = 'RETURN';
+  Credit   = 'CREDIT';
+};
 entity OrderItems : cuid {
   order    : Association to one Orders;
   sku      : Association to one SKUs;
@@ -112,8 +129,6 @@ type Gender : String enum {
 };
 
 type OrderStatusCode : String enum {
-  pending   = 'P';
-  confirmed = 'C';
-  delivered = 'D';
-  returned  = 'R';
+    Pending = 'Pending';
+  Confirmed = 'Confirmed';
 };

@@ -113,7 +113,8 @@
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "ResponsiveTable"
+                    "type": "ResponsiveTable",
+                    "popinLayout": "Block"
                   },
                   "columns": {
                     "DataField::status_code": {
@@ -138,7 +139,6 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "editableHeaderContent": false,
               "contextPath": "/Orders",
               "navigation": {},
               "controlConfiguration": {
@@ -147,18 +147,20 @@
                     "DataField::ID": {
                       "width": "25%"
                     },
-                    "DataField::price": {
-                      "width": "25%"
-                    },
                     "DataField::quantity": {
-                      "width": "25%"
+                      "width": "30%"
                     },
                     "DataField::sku_skuCode": {
-                      "width": "25%"
+                      "width": "30%"
+                    },
+                    "DataField::price": {
+                      "width": "30%"
                     }
                   }
                 }
-              }
+              },
+              "showRelatedApps": true,
+              "editableHeaderContent": false
             }
           }
         }
